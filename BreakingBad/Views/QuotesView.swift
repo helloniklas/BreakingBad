@@ -30,13 +30,15 @@ struct QuotesView: View {
                         .padding()
                 }
                 else {
-                    ScrollView {
-                        VStack {
-                            ForEach(quotes) { quote in
-                                Text("”" + quote.quote + "“").font(.footnote)
-                                    .padding()
-                            }
+                    VStack {
+                        ForEach(quotes) { quote in
+                            Text("”" + quote.quote + "“")
+                                .font(.caption)
+                                .italic()
+                                .padding()
                         }
+                        Spacer()
+                            .frame(height: 50)
                     }
                 }
             }

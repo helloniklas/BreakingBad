@@ -11,8 +11,8 @@ struct LikeIcon: View {
     var isLiked: Bool
     
     var body: some View {
-        Image(systemName: isLiked ? "hand.thumbsup.fill" : "hand.thumbsup")
-            .foregroundColor(.green)
+        Image(systemName: isLiked ? "heart.fill" : "heart")
+            .foregroundColor(.red)
     }
 }
 
