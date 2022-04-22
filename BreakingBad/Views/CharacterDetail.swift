@@ -6,34 +6,6 @@
 //
 
 import SwiftUI
-import SDWebImageSwiftUI
-
-struct HeroImageView: View {
-    
-    var imageUrl: URL?
-    var size: CGSize
-    
-    var body: some View {
-        WebImage(url: imageUrl)
-            .resizable()
-            .placeholder {
-                Rectangle().foregroundColor(.gray)
-            }
-            .transition(.fade(duration: 0.5))
-            .aspectRatio(contentMode: .fill)
-            .frame(width: size.width, height: size.height)
-            .clipped()
-            .overlay(
-                VStack {
-                    Spacer()
-                    Rectangle().fill(LinearGradient(colors: [Color(UIColor.systemBackground), .clear], startPoint: .bottom, endPoint: .top))
-                        .frame(height: 200)
-                }
-            )
-    }
-    
-}
-
 
 struct CharacterDetail: View {
     @EnvironmentObject private var characterService: CharacterService
@@ -44,39 +16,39 @@ struct CharacterDetail: View {
     
     @State private var isShowingReview = false
     
+    private let generatorSelection = UISelectionFeedbackGenerator()
+
     var body: some View {
         ScrollView(showsIndicators: false) {
             
-        VStack {
-            GeometryReader { geometry in
-                if geometry.frame(in: .global).minY <= 0 {
-                    HeroImageView(imageUrl: URL(string: character.img), size: CGSize(width: geometry.size.width, height: geometry.size.height))
+            VStack {
+                GeometryReader { geometry in
+                    // Keep all this here to avoid if statements, which would cauase rerender
+                    HeroImageView(imageUrl: URL(string: character.img),
+                                  size: geometry.frame(in: .global).minY <= 0 ?
+                                  CGSize(width: geometry.size.width, height: geometry.size.height) : CGSize(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY))
+                    .offset(y: geometry.frame(in: .global).minY <= 0 ?
+                            0 : -geometry.frame(in: .global).minY)
                 }
-                else {
-                    HeroImageView(imageUrl: URL(string: character.img), size: CGSize(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY))
-                        .offset(y: -geometry.frame(in: .global).minY)
+                .frame(height: 350)
+                
+                HStack {
+                    Text(character.name).font(.title)
+                    Button(action: { toggleLike() }, label: {
+                        LikeIcon(isLiked: character.isLiked)
+                    })
                 }
+                .padding()
+                
+                QuotesView(character: character)
+                
+                Spacer()
             }
-            .frame(height: 350)
-            
-            
-            HStack {
-                Text(character.name).font(.title)
-                Button(action: { toggleLike() }, label: {
-                    LikeIcon(isLiked: character.isLiked)
-                })
+            .navigationBarItems(trailing:
+                                    Button("Create Review") {
+                isShowingReview = true
             }
-            .padding()
-            
-            QuotesView(character: character)
-            
-            Spacer()
-        }
-        .navigationBarItems(trailing:
-                                Button("Create Review") {
-                                    isShowingReview = true
-                                }
-        )
+            )
         }
         .edgesIgnoringSafeArea(.bottom)
         .sheet(isPresented: $isShowingReview) {
@@ -85,7 +57,8 @@ struct CharacterDetail: View {
     }
     
     private func toggleLike() {
-        self.characterService.toggleLike(character: character)
+        characterService.toggleLike(character: character)
+        generatorSelection.selectionChanged()
     }
 }
 

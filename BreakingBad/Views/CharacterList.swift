@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct CharacterList: View {
+
     @EnvironmentObject private var characterService: CharacterService
-    
+    private let generatorSelection = UISelectionFeedbackGenerator()
+
     var body: some View {
         NavigationView {
             if characterService.isLoading {
@@ -34,6 +36,7 @@ struct CharacterList: View {
                                 .padding(.trailing, 20)
                                 .onTapGesture {
                                     self.characterService.toggleLike(character: character)
+                                    generatorSelection.selectionChanged()
                                 }
                         }
                     }

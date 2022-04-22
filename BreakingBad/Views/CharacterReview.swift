@@ -9,13 +9,18 @@ import SwiftUI
 
 struct CharacterReview: View {
     
-    @StateObject static private var reviewService = ReviewService(networkAPI: NetworkAPI()) // Static olves the Swift 6 warning for @MainActor
+    @StateObject private var reviewService: ReviewService // Initializing this here causes a Swift 6 warning because of the @MainActor
     
     @EnvironmentObject var reviewData: ReviewData
     @Environment(\.presentationMode) var presentationMode
     
     @Binding var character: Character
 
+    init(character: Binding<Character>) {
+        _reviewService = StateObject(wrappedValue: ReviewService(networkAPI: NetworkAPI())) // Workaround to avoid Swift 6 warning
+        self._character = character
+    }
+    
     var body: some View {
         ScrollView {
             VStack(spacing: 20) {
@@ -38,16 +43,16 @@ struct CharacterReview: View {
                 Spacer()
                 Button(action: {
                     guard self.reviewData.isValid else { return }
-                    CharacterReview.reviewService.submitReview(reviewData: reviewData)
+                    reviewService.submitReview(reviewData: reviewData)
                 }) {
                     Text("Submit")
                         .frame(minWidth: 0, maxWidth: .infinity)
                         .font(.system(size: 18))
                         .padding()
-                        .foregroundColor(.blue)
+                        .foregroundColor(.orange)
                         .overlay(
                             RoundedRectangle(cornerRadius: 25)
-                                .stroke(Color.blue, lineWidth: 2)
+                                .stroke(Color.orange, lineWidth: 2)
                         )
                 }
                 .buttonStyle(AnimateSelectionStyle())
@@ -63,7 +68,7 @@ struct CharacterReview: View {
             }
             .padding()
         }
-        .alert(item: CharacterReview.$reviewService.error) { error in
+        .alert(item: $reviewService.error) { error in
             Alert(
                 title: Text("Error"),
                 message: Text(error.localizedDescription),
