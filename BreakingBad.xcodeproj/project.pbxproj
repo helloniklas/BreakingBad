@@ -178,9 +178,9 @@
 		85A3FA952812B98200F6929D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				85A3FA962812B98200F6929D /* ReviewService.swift */,
 				85A3FA972812B98200F6929D /* CharacterService.swift */,
 				85A3FA982812B98200F6929D /* QuotesService.swift */,
+				85A3FA962812B98200F6929D /* ReviewService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
