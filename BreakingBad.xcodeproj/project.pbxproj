@@ -10,7 +10,6 @@
 		8568DBD12812E874004D4E42 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 8568DBD02812E874004D4E42 /* SDWebImageSwiftUI */; };
 		8568DBD32812F130004D4E42 /* HeroImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8568DBD22812F130004D4E42 /* HeroImageView.swift */; };
 		85A3FA6F2812B89900F6929D /* BreakingBadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3FA472812B89800F6929D /* BreakingBadApp.swift */; };
-		85A3FA712812B89900F6929D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3FA482812B89800F6929D /* ContentView.swift */; };
 		85A3FA732812B89900F6929D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 85A3FA492812B89900F6929D /* Assets.xcassets */; };
 		85A3FA872812B97000F6929D /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3FA862812B97000F6929D /* ButtonStyles.swift */; };
 		85A3FA8F2812B97C00F6929D /* RateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85A3FA892812B97C00F6929D /* RateView.swift */; };
@@ -56,7 +55,6 @@
 		8568DBD22812F130004D4E42 /* HeroImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroImageView.swift; sourceTree = "<group>"; };
 		8568DBD52812F2CF004D4E42 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
 		85A3FA472812B89800F6929D /* BreakingBadApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreakingBadApp.swift; sourceTree = "<group>"; };
-		85A3FA482812B89800F6929D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		85A3FA492812B89900F6929D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		85A3FA4E2812B89900F6929D /* BreakingBad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BreakingBad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		85A3FA862812B97000F6929D /* ButtonStyles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 			isa = PBXGroup;
 			children = (
 				85A3FA472812B89800F6929D /* BreakingBadApp.swift */,
-				85A3FA482812B89800F6929D /* ContentView.swift */,
 				85A3FA852812B97000F6929D /* Styles */,
 				85A3FA882812B97C00F6929D /* Views */,
 				85A3FA952812B98200F6929D /* Services */,
@@ -383,7 +380,6 @@
 				85A3FAA42812B98A00F6929D /* LikesDataStore.swift in Sources */,
 				85A3FA8F2812B97C00F6929D /* RateView.swift in Sources */,
 				85A3FAAB2812B98F00F6929D /* Quote.swift in Sources */,
-				85A3FA712812B89900F6929D /* ContentView.swift in Sources */,
 				85A3FA902812B97C00F6929D /* LikeIcon.swift in Sources */,
 				85A3FA9B2812B98200F6929D /* QuotesService.swift in Sources */,
 				85A3FA872812B97000F6929D /* ButtonStyles.swift in Sources */,
