@@ -29,15 +29,9 @@ struct CharacterList: View {
             else {
                 List(characterService.characters) { character in
                     NavigationLink(destination: CharacterDetail(character: binding(for: character))) {
-                        HStack {
-                            Text(character.name)
-                            Spacer()
-                            LikeIcon(isLiked: character.isLiked)
-                                .padding(.trailing, 20)
-                                .onTapGesture {
-                                    self.characterService.toggleLike(character: character)
-                                    generatorSelection.selectionChanged()
-                                }
+                        CharacterRow(name: character.name, isLiked: character.isLiked) {
+                            self.characterService.toggleLike(character: character)
+                            generatorSelection.selectionChanged()
                         }
                     }
                 }
@@ -57,10 +51,41 @@ struct CharacterList: View {
     }
 }
 
+struct CharacterRow: View {
+    
+    var name: String
+    var isLiked: Bool
+    var likeClosure: () -> Void
+    
+    var body: some View {
+        HStack {
+            Text(name)
+            Spacer()
+            LikeIcon(isLiked: isLiked)
+                .padding(.trailing, 20)
+                .onTapGesture {
+                    likeClosure()
+                }
+        }
+    }
+    
+}
+
 struct CharacterList_Previews: PreviewProvider {
     static var previews: some View {
-        // TODO: Make a sample static data for preview...
+        let tmp = CharacterService(networkAPI: NetworkAPI(), dataStore: LikesDataStore())
+        
         CharacterList()
-            .environmentObject(CharacterService(networkAPI: NetworkAPI(), dataStore: LikesDataStore()))
+            .environmentObject(tmp)
+
+        CharacterRow(name: "Niklas", isLiked: true, likeClosure: {})
+
+        CharacterRow(name: "Niklas", isLiked: true, likeClosure: {})
+            .previewDevice(PreviewDevice(rawValue: "iPhone SE (1st generation)"))
+            .previewDisplayName("iPhone SE (1st generation)")
+
     }
 }
+
+
+
