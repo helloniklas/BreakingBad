@@ -12,3 +12,5 @@ It demos both Combine and async/await implementations.
 
 Some unit and functional UI tests has been added.
 
+App runs in both light mode and dark mode.
+
