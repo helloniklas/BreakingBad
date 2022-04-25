@@ -48,7 +48,7 @@ class CharacterService: ObservableObject {
             }
             catch {
                 self.error = error as? NetworkAPI.Error
-                self.isLoading = false
+                isLoading = false
             }
         }
     }

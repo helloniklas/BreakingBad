@@ -25,8 +25,8 @@ struct RateView: View {
                             Image(systemName: "star.fill")
                         }
                     })
-                    .shadow(radius: 1)
                     .foregroundColor(.yellow)
+                    .shadow(color: .secondary, radius: 1, x: 1, y: 1)
                 }
             }
         }

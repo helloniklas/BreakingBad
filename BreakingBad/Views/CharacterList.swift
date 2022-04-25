@@ -30,7 +30,7 @@ struct CharacterList: View {
                 List(characterService.characters) { character in
                     NavigationLink(destination: CharacterDetail(character: binding(for: character))) {
                         CharacterRow(name: character.name, isLiked: character.isLiked) {
-                            self.characterService.toggleLike(character: character)
+                            characterService.toggleLike(character: character)
                             generatorSelection.selectionChanged()
                         }
                     }

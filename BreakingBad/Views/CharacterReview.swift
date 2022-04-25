@@ -26,41 +26,49 @@ struct CharacterReview: View {
             VStack(spacing: 20) {
                 Text("Review of \(character.name)")
                     .font(.title)
+                    .padding()
                 HStack {
                     Text("Your name:")
                         .font(.headline)
                     TextField("Type your name...", text: $reviewData.name)
                 }
                 DatePicker("Date watched:", selection: $reviewData.date)
+                    .font(.headline)
+                    .padding(.bottom)
                 Text("Write your review:")
                     .font(.headline)
                 TextEditor(text: $reviewData.text)
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
                     .frame(height: 300)
-                    .border(Color.gray, width: 1)
+                    .cornerRadius(5)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(.secondary, lineWidth: 1)
+                    )
                 RateView(rating: $reviewData.rating)
                 .padding()
                 Spacer()
                 Button(action: {
-                    guard self.reviewData.isValid else { return }
+                    guard reviewData.isValid else { return }
                     reviewService.submitReview(reviewData: reviewData)
                 }) {
                     Text("Submit")
-                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .font(.callout)
+                        .bold()
                         .font(.system(size: 18))
+                        .frame(minWidth: 0, maxWidth: .infinity)
                         .padding()
-                        .foregroundColor(.orange)
+                        .foregroundColor(reviewData.isValid ? .orange : .secondary)
                         .overlay(
                             RoundedRectangle(cornerRadius: 25)
-                                .stroke(Color.orange, lineWidth: 2)
+                                .stroke(reviewData.isValid ? .orange : .secondary, lineWidth: 2)
                         )
                 }
                 .buttonStyle(AnimateSelectionStyle())
                 .disabled(!reviewData.isValid)
-                .opacity(reviewData.isValid ? 1.0 : 0.5)
 
                 Button(action: {
-                    self.presentationMode.wrappedValue.dismiss()
+                    presentationMode.wrappedValue.dismiss()
                 }) {
                     Text("Cancel")
                 }
