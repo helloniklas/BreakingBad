@@ -40,7 +40,7 @@ struct Character: Decodable, Identifiable, Comparable {
         lhs.id == rhs.id
     }
     
-    static let sample = Self(id: 1, name: "Niklas", birthday: "1973-01-01", occupation: ["iOS Engineer"], img: "test", status: "Occupied", appearance: nil, nickname: "Niklas", portrayed: "Home" )
+    static let sample = Self(id: 1, name: "Niklas", birthday: "01-01-1973", occupation: ["iOS Engineer"], img: "test", status: "Occupied", appearance: nil, nickname: "Niklas", portrayed: "Home" )
 
 }
 

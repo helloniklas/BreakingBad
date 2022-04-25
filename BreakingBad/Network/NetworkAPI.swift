@@ -87,7 +87,7 @@ struct NetworkAPI: Networkable {
             throw Error.serverError
         }
 
-        guard let characters = try? JSONDecoder().decode([Character].self, from: data) else {
+        guard let characters = try? JSONDecoder.apiddMMDDyyyy().decode([Character].self, from: data) else {
             throw Error.parseError
         }
 
