@@ -3,12 +3,12 @@
 //  BreakingBad
 //
 //  Created by Niklas Alvaeus on 22/04/2022.
-//
+//  From SwiftbySundell to support iOS 14
 
 import Foundation
 
 
-@available(iOS, deprecated: 15.0, message: "Use the built-in API instead")
+//@available(iOS, deprecated: 15.0, message: "Use the built-in API instead")
 extension URLSession {
     func data(from url: URL) async throws -> (Data, URLResponse) {
         try await withCheckedThrowingContinuation { continuation in
@@ -26,7 +26,7 @@ extension URLSession {
     }
 }
 
-@available(iOS, deprecated: 15.0, message: "Use the built-in API instead")
+//@available(iOS, deprecated: 15.0, message: "Use the built-in API instead")
 extension URLSession {
     func data(for url: URLRequest) async throws -> (Data, URLResponse) {
         try await withCheckedThrowingContinuation { continuation in
