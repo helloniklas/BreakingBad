@@ -57,7 +57,7 @@ struct CharacterRow: View {
     
     var name: String
     var isLiked: Bool
-    var likeClosure: () -> Void
+    var onLike: () -> Void
     
     var body: some View {
         HStack {
@@ -66,7 +66,7 @@ struct CharacterRow: View {
             LikeIcon(isLiked: isLiked)
                 .padding(.trailing, 20)
                 .onTapGesture {
-                    likeClosure()
+                    onLike()
                 }
         }
     }
@@ -80,9 +80,9 @@ struct CharacterList_Previews: PreviewProvider {
         CharacterList()
             .environmentObject(tmp)
 
-        CharacterRow(name: "Niklas", isLiked: true, likeClosure: {})
+        CharacterRow(name: "Niklas", isLiked: true, onLike: {})
 
-        CharacterRow(name: "Niklas", isLiked: true, likeClosure: {})
+        CharacterRow(name: "Niklas", isLiked: true, onLike: {})
             .previewDevice(PreviewDevice(rawValue: "iPhone SE (1st generation)"))
             .previewDisplayName("iPhone SE (1st generation)")
 
