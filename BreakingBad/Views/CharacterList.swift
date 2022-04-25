@@ -35,6 +35,8 @@ struct CharacterList: View {
                         }
                     }
                 }
+                .opacity(characterService.animateIn ? 1 : 0)
+                .offset(x: 0, y: characterService.animateIn ? 0 : 50)
                 .navigationTitle("Characters")
             }
         }

@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class QuotesService: ObservableObject {
     private let networkAPI: NetworkAPI
@@ -29,8 +30,10 @@ class QuotesService: ObservableObject {
                     self.error = error
                 }
             }, receiveValue: { quotes in
-                self.quotes = quotes
-                self.error = nil
+                withAnimation {
+                    self.quotes = quotes
+                    self.error = nil
+                }
             }).store(in: &subscriptions)
     }
     

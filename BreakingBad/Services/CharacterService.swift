@@ -15,6 +15,7 @@ class CharacterService: ObservableObject {
     @Published var error: NetworkAPI.Error? = nil
     @Published var characters: [Character] = []
     @Published var isLoading = false
+    @Published var animateIn = false
     
     init(networkAPI: Networkable, dataStore: LikesDataStorable) {
         self.networkAPI = networkAPI
@@ -41,6 +42,9 @@ class CharacterService: ObservableObject {
                 characters = charactersWithLikes
                 isLoading = false
                 error = nil
+                withAnimation(Animation.easeInOut(duration: 0.6)) {
+                    animateIn = true
+                }
             }
             catch {
                 self.error = error as? NetworkAPI.Error

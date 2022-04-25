@@ -29,6 +29,7 @@ struct CharacterDetail: View {
                                   CGSize(width: geometry.size.width, height: geometry.size.height) : CGSize(width: geometry.size.width, height: geometry.size.height + geometry.frame(in: .global).minY))
                     .offset(y: geometry.frame(in: .global).minY <= 0 ?
                             0 : -geometry.frame(in: .global).minY)
+                    .accessibilityHint("Photo of " + character.name)
                 }
                 .frame(height: 350)
                 
@@ -37,6 +38,8 @@ struct CharacterDetail: View {
                     Button(action: { toggleLike() }, label: {
                         LikeIcon(isLiked: character.isLiked)
                     })
+                    .buttonStyle(AnimateSelectionStyle(scaleValue: 0.5))
+                    .accessibilityHint(character.isLiked ? "Unlike" : "Like")
                 }
                 .padding()
                 
