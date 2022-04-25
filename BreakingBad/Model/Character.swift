@@ -11,7 +11,7 @@ struct Character: Decodable, Identifiable, Comparable {
     
     var id: Int
     var name: String
-    var birthday: String
+    var birthday: String // TODO: API returns a date string "dd-MM-yyyy or a string of "unknown". Needs to work with multiple value types when decoded
     var occupation: [String]
     var img: String
     var status: String

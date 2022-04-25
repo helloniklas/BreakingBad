@@ -10,6 +10,7 @@ import SwiftUI
 
 class ReviewData: ObservableObject {
     
+    // MARK: Published
     @Published var isValid: Bool = false
     
     @Published var date: Date = Date() {
@@ -36,6 +37,7 @@ class ReviewData: ObservableObject {
         }
     }
     
+    // MARK: Private Methods
     private func validate() {
         if name.count > 0 && text.count > 0 && rating != 0 {
             isValid = true
@@ -45,12 +47,6 @@ class ReviewData: ObservableObject {
         }
     }
     
-    func getJSONParams() -> [String: Any] {
-        return ["name": name,
-                "date": date.description,
-                "text": text,
-                "rating": rating]
-    }
 }
 
 

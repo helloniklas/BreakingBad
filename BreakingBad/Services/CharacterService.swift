@@ -9,9 +9,12 @@ import SwiftUI
 
 @MainActor
 class CharacterService: ObservableObject {
+    
+    // MARK: Dependecies
     private let networkAPI: Networkable
     private var dataStore: LikesDataStorable
     
+    // MARK: Published
     @Published var error: NetworkAPI.Error? = nil
     @Published var characters: [Character] = []
     @Published var isLoading = false
@@ -21,7 +24,8 @@ class CharacterService: ObservableObject {
         self.networkAPI = networkAPI
         self.dataStore = dataStore
     }
-    
+
+    // MARK: Methods
     func fetchCharacters() {
         isLoading = true
         
@@ -62,6 +66,7 @@ class CharacterService: ObservableObject {
         }
     }
     
+    // MARK: Private Methods
     private func like(character: Character) {
         if let index = characters.firstIndex(where: { $0.id == character.id }) {
             dataStore.saveLike(characterID: character.id, liked: true)

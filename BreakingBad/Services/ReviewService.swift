@@ -10,8 +10,10 @@ import SwiftUI
 
 @MainActor
 class ReviewService: ObservableObject {
+    // MARK: Dependecies
     private let networkAPI: NetworkAPI
-    
+
+    // MARK: Published
     @Published var error: NetworkAPI.Error? {
         didSet {
             if error != nil {
@@ -26,7 +28,8 @@ class ReviewService: ObservableObject {
     init(networkAPI: NetworkAPI) {
         self.networkAPI = networkAPI
     }
-    
+
+    // MARK: Methods
     func submitReview(reviewData: ReviewData) {
         isLoading = true
         Task {

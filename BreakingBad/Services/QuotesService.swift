@@ -10,9 +10,12 @@ import Combine
 import SwiftUI
 
 class QuotesService: ObservableObject {
+    
+    // MARK: Dependecies
     private let networkAPI: NetworkAPI
     private var subscriptions = Set<AnyCancellable>()
     
+    // MARK: Published
     @Published var error: NetworkAPI.Error? = nil
     @Published var quotes: [Quote]?
 
@@ -20,6 +23,7 @@ class QuotesService: ObservableObject {
         self.networkAPI = networkAPI
     }
     
+    // MARK: Methods
     func fetchQuotes(character: Character) {
         quotes = nil
         networkAPI

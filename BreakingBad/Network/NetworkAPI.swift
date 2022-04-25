@@ -10,6 +10,7 @@ import SwiftUI
 
 struct NetworkAPI: Networkable {
     
+    // MARK: Enums
     enum Error: LocalizedError, Identifiable {
         var id: String { localizedDescription }
 
@@ -26,9 +27,7 @@ struct NetworkAPI: Networkable {
         }
     }
     
-    private let decoder = JSONDecoder()
-    private let urlSession = URLSession.shared
-    
+    // MARK: Private Enums
     private enum Method: String {
         case get = "GET"
         case post = "POST"
@@ -79,6 +78,12 @@ struct NetworkAPI: Networkable {
         }
     }
     
+    // MARK: Private properties
+    private let decoder = JSONDecoder.apiddMMDDyyyy()
+    private let urlSession = URLSession.shared
+
+    
+    // MARK: Methods
     // This is using await/async
     func fetchCharacters() async throws -> [Character] {
         let (data, response) = try await urlSession.data(for: EndPoint.request(with: EndPoint.characters.url, method: .get))
@@ -87,7 +92,7 @@ struct NetworkAPI: Networkable {
             throw Error.serverError
         }
 
-        guard let characters = try? JSONDecoder.apiddMMDDyyyy().decode([Character].self, from: data) else {
+        guard let characters = try? decoder.decode([Character].self, from: data) else {
             throw Error.parseError
         }
 
@@ -110,7 +115,6 @@ struct NetworkAPI: Networkable {
             .map { $0 }
             .eraseToAnyPublisher()
     }
-    
     
     func submitReview(reviewData: ReviewData) async throws  -> Void {
         // No review end point exists, so simulate an error

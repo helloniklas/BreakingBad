@@ -10,5 +10,4 @@ import SwiftUI
 
 protocol Networkable {
     func fetchCharacters() async throws -> [Character]
-    
 }
