@@ -69,5 +69,7 @@ struct CharacterDetail_Previews: PreviewProvider {
     static var previews: some View {
         CharacterDetail(character: Binding.constant(Character.sample))
             .environmentObject(CharacterService(networkAPI: NetworkAPI(), dataStore: LikesDataStore()))
+            .environmentObject(QuotesService(networkAPI: NetworkAPI()))
+
     }
 }

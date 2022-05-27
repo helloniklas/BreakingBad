@@ -55,5 +55,6 @@ struct QuotesView: View {
 struct QuotesView_Previews: PreviewProvider {
     static var previews: some View {
         QuotesView(character: Character.sample)
+            .environmentObject(QuotesService(networkAPI: NetworkAPI()))
     }
 }
