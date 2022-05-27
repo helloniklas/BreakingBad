@@ -29,14 +29,14 @@ class QuotesService: ObservableObject {
         networkAPI
             .fetchQuotesFor(character: character)
             .receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { completion in
+            .sink(receiveCompletion: { [weak self] completion in
                 if case .failure(let error) = completion {
-                    self.error = error
+                    self?.error = error
                 }
-            }, receiveValue: { quotes in
+            }, receiveValue: { [weak self] quotes in
                 withAnimation {
-                    self.quotes = quotes
-                    self.error = nil
+                    self?.quotes = quotes
+                    self?.error = nil
                 }
             }).store(in: &subscriptions)
     }
