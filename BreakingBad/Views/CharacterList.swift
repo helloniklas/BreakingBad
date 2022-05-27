@@ -27,8 +27,8 @@ struct CharacterList: View {
                 }
             }
             else {
-                List(characterService.characters) { character in
-                    NavigationLink(destination: CharacterDetail(character: binding(for: character))) {
+                List($characterService.characters) { $character in
+                    NavigationLink(destination: CharacterDetail(character: $character)) {
                         CharacterRow(name: character.name, isLiked: character.isLiked) {
                             characterService.toggleLike(character: character)
                             generatorSelection.selectionChanged()
@@ -45,12 +45,6 @@ struct CharacterList: View {
         }
     }
     
-    private func binding(for character: Character) -> Binding<Character> {
-        guard let characterIndex = characterService.characters.firstIndex(where: { $0 == character }) else {
-            fatalError("Can't find character in array")
-        }
-        return $characterService.characters[characterIndex]
-    }
 }
 
 struct CharacterRow: View {
